@@ -3,25 +3,35 @@ import 'package:state_restoration/screen_a.dart';
 import 'package:state_restoration/screen_b.dart';
 
 void main() {
-  runApp(const HomePage());
+  runApp(const BottomNavigationBarControllerPage());
 }
 
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+class BottomNavigationBarControllerPage extends StatefulWidget {
+  const BottomNavigationBarControllerPage({Key? key}) : super(key: key);
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<BottomNavigationBarControllerPage> createState() =>
+      _BottomNavigationBarControllerPageState();
 }
 
-class _HomePageState extends State<HomePage> {
-  final list = [const ScreenA(), const ScreenB()];
+class _BottomNavigationBarControllerPageState
+    extends State<BottomNavigationBarControllerPage> {
+  final PageStorageBucket _bucket = PageStorageBucket();
+  final screens = [
+    const ScreenA(
+      key: PageStorageKey<String>('Screen-A'),
+    ),
+    const ScreenB(
+      key: PageStorageKey<String>('Screen-B'),
+    )
+  ];
   int _selectedIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'State Restoration',
       home: Scaffold(
-        body: list[_selectedIndex],
+        body: PageStorage(bucket: _bucket, child: screens[_selectedIndex]),
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: _selectedIndex,
           onTap: onTap,

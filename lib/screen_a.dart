@@ -9,6 +9,17 @@ class ScreenA extends StatefulWidget {
 
 class _ScreenAState extends State<ScreenA> {
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    // print('PageA ' +
+    //     PageStorage.of(context)
+    //         .readState(context,
+    //             identifier: const PageStorageKey<String>('Screen-A'))
+    //         .toString());
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
