@@ -8,7 +8,19 @@ class ScreenB extends StatefulWidget {
 }
 
 class _ScreenBState extends State<ScreenB> {
-  DateTime selectedDate = DateTime.now();
+  late final TextEditingController controller;
+
+  @override
+  void initState() {
+    super.initState();
+    controller = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -17,36 +29,32 @@ class _ScreenBState extends State<ScreenB> {
         centerTitle: true,
         title: const Text('Screen B'),
       ),
-      body: Center(
+      body: Padding(
+        padding: const EdgeInsets.all(15.0),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            IconButton(
-              onPressed: () async {
-                selectedDate = await openDatePicker(context);
-                setState(() {});
-              },
-              icon: const Icon(
-                Icons.calendar_month_sharp,
-                color: Colors.blueGrey,
+            TextField(
+              controller: controller,
+              textInputAction: TextInputAction.next,
+              maxLines: 10,
+              cursorColor: Colors.black,
+              autocorrect: false,
+              textAlignVertical: TextAlignVertical.center,
+              decoration: InputDecoration(
+                isCollapsed: true,
+                contentPadding: const EdgeInsets.all(15),
+                fillColor: Colors.grey[200],
+                filled: true,
+                border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20),
+                    borderSide: BorderSide.none),
+                hintText: 'Enter some text',
               ),
             ),
-            Text(
-              'Selected Date: ${selectedDate.day}/${selectedDate.month}/${selectedDate.year}',
-              style: const TextStyle(fontSize: 25, color: Colors.blueGrey),
-            )
           ],
         ),
       ),
     );
-  }
-
-  Future<DateTime> openDatePicker(BuildContext context) async {
-    final date = await showDatePicker(
-        context: context,
-        initialDate: DateTime.now(),
-        firstDate: DateTime(2022),
-        lastDate: DateTime(2024));
-    return date ?? DateTime.now();
   }
 }
