@@ -14,15 +14,13 @@ class _ScreenBState extends State<ScreenB> {
   void initState() {
     super.initState();
     controller = TextEditingController();
-    if (PageStorage.of(context)
-            .readState(context, identifier: const PageStorageKey('Screen B')) !=
-        null) {
-      controller.text = PageStorage.of(context)
-          .readState(context, identifier: PageStorageKey('Screen B'));
-    }
+
+    controller.text = PageStorage.of(context)
+            .readState(context, identifier: const PageStorageKey('Screen B')) ??
+        '';
     controller.addListener(() {
       PageStorage.of(context).writeState(context, controller.text,
-          identifier: PageStorageKey('Screen B'));
+          identifier: const PageStorageKey('Screen B'));
     });
   }
 
