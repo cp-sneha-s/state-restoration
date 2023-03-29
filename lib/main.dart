@@ -21,7 +21,7 @@ class _HomePageState extends State<HomePage> {
     return MaterialApp(
       title: 'State Restoration',
       home: Scaffold(
-        body: list[_selectedIndex],
+        body: IndexedStack(index: _selectedIndex, children: list),
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: _selectedIndex,
           onTap: onTap,
