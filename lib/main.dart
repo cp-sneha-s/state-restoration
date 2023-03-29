@@ -15,13 +15,21 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final list = [const ScreenA(), const ScreenB()];
+  PageController _controller = PageController();
   int _selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'State Restoration',
       home: Scaffold(
-        body: list[_selectedIndex],
+        body: PageView(
+            controller: _controller,
+            onPageChanged: (index) {
+              setState(() {
+                _selectedIndex = index;
+              });
+            },
+            children: list),
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: _selectedIndex,
           onTap: onTap,
@@ -37,6 +45,7 @@ class _HomePageState extends State<HomePage> {
 
   void onTap(int index) {
     if (_selectedIndex != index) {
+      _controller.jumpToPage(index);
       setState(() {
         _selectedIndex = index;
       });

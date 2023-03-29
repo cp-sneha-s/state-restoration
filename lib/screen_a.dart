@@ -7,9 +7,12 @@ class ScreenA extends StatefulWidget {
   State<ScreenA> createState() => _ScreenAState();
 }
 
-class _ScreenAState extends State<ScreenA> {
+class _ScreenAState extends State<ScreenA> with AutomaticKeepAliveClientMixin {
+  @override
+  bool get wantKeepAlive => true;
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,

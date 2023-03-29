@@ -7,8 +7,11 @@ class ScreenB extends StatefulWidget {
   State<ScreenB> createState() => _ScreenBState();
 }
 
-class _ScreenBState extends State<ScreenB> {
+class _ScreenBState extends State<ScreenB> with AutomaticKeepAliveClientMixin {
   late final TextEditingController controller;
+  @override
+  // TODO: implement wantKeepAlive
+  bool get wantKeepAlive => true;
 
   @override
   void initState() {
@@ -24,6 +27,7 @@ class _ScreenBState extends State<ScreenB> {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
