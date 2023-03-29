@@ -7,13 +7,13 @@ class ScreenB extends StatefulWidget {
   State<ScreenB> createState() => _ScreenBState();
 }
 
-class _ScreenBState extends State<ScreenB> {
-  late final TextEditingController controller;
+class _ScreenBState extends State<ScreenB> with RestorationMixin {
+  late final RestorableTextEditingController controller;
 
   @override
   void initState() {
     super.initState();
-    controller = TextEditingController();
+    controller = RestorableTextEditingController();
   }
 
   @override
@@ -35,7 +35,7 @@ class _ScreenBState extends State<ScreenB> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             TextField(
-              controller: controller,
+              controller: controller.value,
               textInputAction: TextInputAction.next,
               maxLines: 10,
               cursorColor: Colors.black,
@@ -56,5 +56,14 @@ class _ScreenBState extends State<ScreenB> {
         ),
       ),
     );
+  }
+
+  @override
+  // TODO: implement restorationId
+  String? get restorationId => 'screen-b';
+
+  @override
+  void restoreState(RestorationBucket? oldBucket, bool initialRestore) {
+    registerForRestoration(controller, 'scren');
   }
 }

@@ -20,6 +20,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'State Restoration',
+      restorationScopeId: 'state-restoration',
       home: Scaffold(
         body: list[_selectedIndex],
         bottomNavigationBar: BottomNavigationBar(
