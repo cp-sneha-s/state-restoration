@@ -18,18 +18,19 @@ class _ScreenAState extends State<ScreenA> {
       body: Padding(
         padding: const EdgeInsets.all(15),
         child: ListView.separated(
-            itemBuilder: (context, index) {
-              return ListTile(
-                tileColor: Colors.yellow,
-                title: Center(child: Text('Item $index')),
-              );
-            },
-            separatorBuilder: (context, index) {
-              return const SizedBox(
-                height: 15,
-              );
-            },
-            itemCount: 100),
+          itemCount: 100,
+          itemBuilder: (context, index) {
+            return ListTile(
+              tileColor: Colors.yellow,
+              title: Center(child: Text('Item $index')),
+            );
+          },
+          separatorBuilder: (context, index) {
+            return const SizedBox(
+              height: 15,
+            );
+          },
+        ),
       ),
     );
   }
