@@ -12,7 +12,6 @@ class _ScreenAState extends State<ScreenA> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        centerTitle: true,
         title: const Text('Screen A'),
       ),
       body: Padding(

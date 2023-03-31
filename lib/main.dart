@@ -19,7 +19,6 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'State Restoration',
       home: Scaffold(
         body: IndexedStack(index: _selectedIndex, children: list),
         bottomNavigationBar: BottomNavigationBar(
