@@ -16,6 +16,21 @@ class BottomNavigationBarControllerPage extends StatefulWidget {
 
 class _BottomNavigationBarControllerPageState
     extends State<BottomNavigationBarControllerPage> {
+  int _selectedIndex = 0;
+  final bottomNavigationBarItems = const [
+    BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Screen A'),
+    BottomNavigationBarItem(
+        icon: Icon(Icons.account_balance_wallet), label: 'Screen B')
+  ];
+
+  void onTap(int index) {
+    if (_selectedIndex != index) {
+      setState(() {
+        _selectedIndex = index;
+      });
+    }
+  }
+
   final PageStorageBucket _bucket = PageStorageBucket();
   final screens = [
     const ScreenA(
@@ -25,7 +40,6 @@ class _BottomNavigationBarControllerPageState
       key: PageStorageKey<String>('Screen-B'),
     )
   ];
-  int _selectedIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -33,23 +47,10 @@ class _BottomNavigationBarControllerPageState
       home: Scaffold(
         body: PageStorage(bucket: _bucket, child: screens[_selectedIndex]),
         bottomNavigationBar: BottomNavigationBar(
-          currentIndex: _selectedIndex,
-          onTap: onTap,
-          items: const [
-            BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Screen A'),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.account_balance_wallet), label: 'Screen B')
-          ],
-        ),
+            currentIndex: _selectedIndex,
+            onTap: onTap,
+            items: bottomNavigationBarItems),
       ),
     );
-  }
-
-  void onTap(int index) {
-    if (_selectedIndex != index) {
-      setState(() {
-        _selectedIndex = index;
-      });
-    }
   }
 }
