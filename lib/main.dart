@@ -38,13 +38,7 @@ class _HomePageState extends State<HomePage> {
     return MaterialApp(
       home: Scaffold(
         body: PageView(
-            controller: _controller,
-            onPageChanged: (index) {
-              setState(() {
-                _selectedIndex = index;
-              });
-            },
-            children: list),
+            controller: _controller, onPageChanged: onTap, children: list),
         bottomNavigationBar: BottomNavigationBar(
             currentIndex: _selectedIndex,
             onTap: onTap,
