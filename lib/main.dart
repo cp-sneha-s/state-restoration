@@ -15,12 +15,27 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final list = [const ScreenA(), const ScreenB()];
-  PageController _controller = PageController();
   int _selectedIndex = 0;
+  final bottomNavigationBarItems = const [
+    BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Screen A'),
+    BottomNavigationBarItem(
+        icon: Icon(Icons.account_balance_wallet), label: 'Screen B')
+  ];
+
+  final PageController _controller = PageController();
+
+  void onTap(int index) {
+    if (_selectedIndex != index) {
+      _controller.jumpToPage(index);
+      setState(() {
+        _selectedIndex = index;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'State Restoration',
       home: Scaffold(
         body: PageView(
             controller: _controller,
@@ -31,24 +46,10 @@ class _HomePageState extends State<HomePage> {
             },
             children: list),
         bottomNavigationBar: BottomNavigationBar(
-          currentIndex: _selectedIndex,
-          onTap: onTap,
-          items: const [
-            BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Screen A'),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.account_balance_wallet), label: 'Screen B')
-          ],
-        ),
+            currentIndex: _selectedIndex,
+            onTap: onTap,
+            items: bottomNavigationBarItems),
       ),
     );
-  }
-
-  void onTap(int index) {
-    if (_selectedIndex != index) {
-      _controller.jumpToPage(index);
-      setState(() {
-        _selectedIndex = index;
-      });
-    }
   }
 }

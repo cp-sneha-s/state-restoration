@@ -15,24 +15,24 @@ class _ScreenAState extends State<ScreenA> with AutomaticKeepAliveClientMixin {
     super.build(context);
     return Scaffold(
       appBar: AppBar(
-        centerTitle: true,
         title: const Text('Screen A'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(15),
         child: ListView.separated(
-            itemBuilder: (context, index) {
-              return ListTile(
-                tileColor: Colors.yellow,
-                title: Center(child: Text('Item $index')),
-              );
-            },
-            separatorBuilder: (context, index) {
-              return const SizedBox(
-                height: 15,
-              );
-            },
-            itemCount: 100),
+          itemCount: 100,
+          itemBuilder: (context, index) {
+            return ListTile(
+              tileColor: Colors.yellow,
+              title: Center(child: Text('Item $index')),
+            );
+          },
+          separatorBuilder: (context, index) {
+            return const SizedBox(
+              height: 15,
+            );
+          },
+        ),
       ),
     );
   }
