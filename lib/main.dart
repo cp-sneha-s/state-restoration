@@ -3,19 +3,17 @@ import 'package:state_restoration/screen_a.dart';
 import 'package:state_restoration/screen_b.dart';
 
 void main() {
-  runApp(const BottomNavigationBarControllerPage());
+  runApp(const HomePage());
 }
 
-class BottomNavigationBarControllerPage extends StatefulWidget {
-  const BottomNavigationBarControllerPage({Key? key}) : super(key: key);
+class HomePage extends StatefulWidget {
+  const HomePage({Key? key}) : super(key: key);
 
   @override
-  State<BottomNavigationBarControllerPage> createState() =>
-      _BottomNavigationBarControllerPageState();
+  State<HomePage> createState() => _HomePageState();
 }
 
-class _BottomNavigationBarControllerPageState
-    extends State<BottomNavigationBarControllerPage> {
+class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
   final bottomNavigationBarItems = const [
     BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Screen A'),

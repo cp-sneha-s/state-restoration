@@ -26,6 +26,7 @@ class _ScreenBState extends State<ScreenB> {
 
   @override
   void dispose() {
+    controller.removeListener(() {});
     controller.dispose();
     super.dispose();
   }
